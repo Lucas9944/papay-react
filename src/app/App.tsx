@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import "../css/App.css";
 import "../css/navbar.css";
+import "../css/footer.css";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import { Container } from "@mui/system";
@@ -15,6 +16,7 @@ import { HomePage } from "./screens/HomePage";
 import { NavbarHome } from "./components/header";
 import { NavbarRestaurant } from "./components/header/restaurant";
 import { NavbarOthers } from "./components/header/others";
+import { Footer } from "./components/header/footer";
 
 function App() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -31,36 +33,6 @@ function App() {
       ) : (
         <NavbarOthers setPath={setPath} />
       )}
-      {/* <nav>
-          <ul>
-            <li>
-              <Link to="/restaurant">RestaurantPage</Link>
-            </li>
-
-            <li>
-              <Link to="/community">CommunityPage</Link>
-            </li>
-
-            <li>
-              <Link to="/orders">OrdersPage</Link>
-            </li>
-
-            <li>
-              <Link to="/member-page">MemberPage</Link>
-            </li>
-            <li>
-              <Link to="/help">HelpPage</Link>
-            </li>
-
-            <li>
-              <Link to="/login">LoginPage</Link>
-            </li>
-
-            <li>
-              <Link to="/">HomePage</Link>
-            </li>
-          </ul>
-        </nav> */}
 
       <Switch>
         <Route path="/restaurant">
@@ -85,6 +57,8 @@ function App() {
           <HomePage />
         </Route>
       </Switch>
+
+      <Footer />
     </Router>
   );
 }
