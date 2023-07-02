@@ -1,0 +1,61 @@
+.homepage .static_frame {
+    width: 100%;
+    background: #2c261e;
+}
+
+.homepage .personage_img.left {
+    width: 204px;
+    height: 200px;
+    background: url("/public/home/papay2.png");
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+    background-size: cover;
+
+}
+
+.homepage .personage_img.right {
+    width: 204px;
+    height: 200px;
+    background: url("/public/home/papay2.png");
+    transform: matrix(1, 0, 0, 1, 0, 0);
+    background-size: cover;
+
+}
+
+.homepage .static_box {
+    width: 191px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.homepage .static_num {
+    width: 81.08031463623047px;
+    height: 80px;
+    top: 833.0029296875px;
+    left: 253.1328125px;
+    font-family: 'Poppins';
+    font-size: 54px;
+    font-weight: 600;
+    line-height: 81px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #FFFFFF;
+
+}
+
+.homepage .static_text {
+    width: 191.35134887695312px;
+    height: 30px;
+    top: 923.0029296875px;
+    left: 198px;
+    font-family: 'Poppins';
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #E3C08D;
+
+}
