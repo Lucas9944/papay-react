@@ -8,7 +8,7 @@ import { Events } from "./events";
 import { Recommenddations } from "./recommendations";
 import { Statistics } from "./statistics";
 import { TopRestaurants } from "./topRestaurants";
-import '../../../css/home.css';
+import "../../../css/home.css";
 
 export function HomePage() {
   return (
@@ -19,7 +19,7 @@ export function HomePage() {
       <BestDishes />
       <Advertisements />
       <Events />
-      <Recommenddations/>
+      <Recommenddations />
     </div>
   );
 }
