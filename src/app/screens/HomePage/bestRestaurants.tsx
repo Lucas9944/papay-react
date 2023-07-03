@@ -17,7 +17,7 @@ import React from "react";
 
 export function BestRestaurants() {
   return (
-    <div className="top_restaurant_frame">
+    <div className="best_restaurant_frame">
       <img
         src={"icons/kafel.svg"}
         style={{ position: "absolute", left: "6%", transform: "route(90deg)" }}
