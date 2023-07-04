@@ -5,7 +5,7 @@ import { Advertisements } from "./advertisements";
 import { BestDishes } from "./bestDishes";
 import { BestRestaurants } from "./bestRestaurants";
 import { Events } from "./events";
-import { Recommenddations } from "./recommendations";
+import { Recommondations } from "./recommendations";
 import { Statistics } from "./statistics";
 import { TopRestaurants } from "./topRestaurants";
 import "../../../css/home.css";
@@ -19,7 +19,7 @@ export function HomePage() {
       <BestDishes />
       <Advertisements />
       <Events />
-      <Recommenddations />
+      <Recommondations />
     </div>
   );
 }
