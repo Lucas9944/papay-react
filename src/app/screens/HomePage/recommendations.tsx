@@ -14,7 +14,7 @@ export function Recommondations() {
           alignItems={"center"}
           sx={{ mt: "45px" }}
         >
-          <Box className="category_title">Tavsiya qilingan maqolalar</Box>
+          <Box className="catigory_title">Tavsiya qilingan maqolalar</Box>
           <Stack className="article_main" flexDirection={"row"}>
             <Stack className="article_container">
               <Box className="article_category">Ko'p ko'rilgan</Box>
@@ -22,14 +22,14 @@ export function Recommondations() {
               <Stack className="article_box">
                 <Box
                   className="article_img"
-                  sx={{ backgroundImage: "url('/dishes/kebab4.jpeg')" }}
+                  sx={{ backgroundImage: "url('/restaurant/salad.png')" }}
                 ></Box>
                 <Box className="article_info">
                   <Box className="article_main_info">
                     <div className="article_author">
                       <Avatar
                         alt={"Author_photo"}
-                        src={"auth/avatar.png"}
+                        src={"icons/jonkaekan.svg"}
                         sx={{ width: "35px", height: "35px" }}
                       />
                       <span className="author_username">Lucas</span>
@@ -42,18 +42,18 @@ export function Recommondations() {
               <Stack className="article_box">
                 <Box
                   className="article_img"
-                  sx={{ backgroundImage: "url('/auth/avatar.png')" }}
+                  sx={{ backgroundImage: "url('/restaurant/salad.png')" }}
                 ></Box>
                 <Box className="article_info">
                   <Box className="article_main_info">
                     <div className="article_author">
                       <Avatar
                         alt={"Author_photo"}
-                        src={"auth/avatar.png"}
+                        src={"icons/jonkaekan.svg"}
                         sx={{ width: "35px", height: "35px" }}
                       />
                       <span className="author_username">John</span>
-               </div>
+                    </div>
                     <span className="article_title">Yangi ovqat turlari</span>
                     <p className={"article_desc"}></p>
                   </Box>
@@ -64,14 +64,14 @@ export function Recommondations() {
               <Stack className="article_box">
                 <Box
                   className="article_img"
-                  sx={{ backgroundImage: "url('/dishes/kebab4.jpeg')" }}
+                  sx={{ backgroundImage: "url('/restaurant/salad.png')" }}
                 ></Box>
                 <Box className="article_info">
                   <Box className="article_main_info">
                     <div className="article_author">
                       <Avatar
                         alt={"Author_photo"}
-                        src={"auth/avatar.png"}
+                        src={"/icons/jonkaekan.svg"}
                         sx={{ width: "35px", height: "35px" }}
                       />
                       <span className="author_username"> devl1</span>
@@ -84,14 +84,14 @@ export function Recommondations() {
               <Stack className="article_box">
                 <Box
                   className="article_img"
-                  sx={{ backgroundImage: "url('/auth/avatar.png')" }}
+                  sx={{ backgroundImage: "url('/restaurant/salad.png')" }}
                 ></Box>
                 <Box className="article_info">
                   <Box className="article_main_info">
                     <div className="article_author">
                       <Avatar
                         alt={"Author_photo"}
-                        src={"auth/avatar.png"}
+                        src={"/icons/jonkaekan.svg"}
                         sx={{ width: "35px", height: "35px" }}
                       />
                       <span className="author_username">Sunday</span>
