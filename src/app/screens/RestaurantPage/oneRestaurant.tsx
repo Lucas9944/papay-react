@@ -22,7 +22,7 @@ const product_list = Array.from(Array(8).keys());
 
 export function OneRestaurant() {
   return (
-    <div className="single_restaraunt">
+    <div className="single_restaurant">
       <Container>
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Stack className={"avatar_big_box"}>
@@ -47,153 +47,155 @@ export function OneRestaurant() {
               </Box>
             </Box>
           </Stack>
-        </Stack>
 
-        <Stack
-          style={{ width: "100%", display: "flex" }}
-          flexDirection={"row"}
-          sx={{ mt: "35px" }}
-        >
-          <Box className={"prev_btn restaurant-prev"}>
-            <ArrowBackIosNewIcon
-              sx={{ fontSize: 40 }}
+          <Stack
+            style={{ width: "100%", display: "flex" }}
+            flexDirection={"row"}
+            sx={{ mt: "35px" }}
+          >
+            <Box className={"prev_btn restaurant-prev"}>
+              <ArrowBackIosNewIcon
+                sx={{ fontSize: 40 }}
+                style={{ color: "white" }}
+              />
+            </Box>
+            <Swiper
+              className={"restaurant_avatars_wrapper"}
+              slidesPerView={7}
+              centeredSlides={false}
+              spaceBetween={30}
+              navigation={{
+                nextEl: ".restaurant-next",
+                prevEl: ".restaurant-prev",
+              }}
+            >
+              {restaurant_list.map((ele, index) => {
+                return (
+                  <SwiperSlide
+                    style={{ cursor: "pointer" }}
+                    key={index}
+                    className={"restaurant_avatars"}
+                  >
+                    <img src={"/restaurant/oshxona.png"} />
+                    <span>Burak</span>
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+            <Box
+              className={"next_btn restaurant-next"}
               style={{ color: "white" }}
-            />
-          </Box>
-          <Swiper
-            className={"restaurant_avatars_wrapper"}
-            slidesPerView={7}
-            centeredSlides={false}
-            spaceBetween={30}
-            navigation={{
-              nextEl: ".restaurant-next",
-              prevEl: ".restaurant-prev",
-            }}
-          >
-            {restaurant_list.map((ele, index) => {
-              return (
-                <SwiperSlide
-                  style={{ cursor: "pointer" }}
-                  key={index}
-                  className={"restaurant_avatars"}
-                >
-                  <img src={"/restaurant/oshxona.png"} />
-                  <span>Burak</span>
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
-          <Box
-            className={"next_btn restaurant-next"}
-            style={{ color: "white" }}
-          >
-            <ArrowForwardIosIcon sx={{ fontSize: 40 }} />
-          </Box>
-        </Stack>
-
-        <Stack
-          display={"flex"}
-          flexDirection={"row"}
-          justifyContent={"flex-end"}
-          width={"90%"}
-          sx={{ mt: "65px" }}
-        >
-          <Box className={"dishs_filter_box"}>
-            <Button variant={"contained"} color="secondary">
-              new
-            </Button>
-
-            <Button variant={"contained"} color="secondary">
-              price
-            </Button>
-
-            <Button variant={"contained"} color="secondary">
-              likes
-            </Button>
-
-            <Button variant={"contained"} color="secondary">
-              views
-            </Button>
-          </Box>
-        </Stack>
-
-        <Stack
-          style={{ width: "100%", display: "flex", minHeight: "600px" }}
-          flexDirection={"row"}
-        >
-          <Stack className={"dish_category_box"}>
-            <div className={"dish_category_main"}>
-              <Button variant={"contained"} color="secondary">
-                boshqa
-              </Button>
-
-              <Button variant={"contained"} color="secondary">
-                deserd
-              </Button>
-
-              <Button variant={"contained"} color="secondary">
-                ichimlik
-              </Button>
-
-              <Button variant={"contained"} color="secondary">
-                ovqatlar
-              </Button>
-            </div>
+            >
+              <ArrowForwardIosIcon sx={{ fontSize: 40 }} />
+            </Box>
           </Stack>
 
-          <Stack className={"dish_wrapper"}>
-            {product_list.map((ele, index) => {
-              const size_volume = "normal size";
+          <Stack
+            display={"flex"}
+            flexDirection={"row"}
+            justifyContent={"flex-end"}
+            width={"90%"}
+            sx={{ mt: "65px" }}
+          >
+            <Box className={"dishs_filter_box"}>
+              <Button variant={"contained"} color="secondary">
+                new
+              </Button>
 
-              return (
-                <Box className={"dish_box"}>
-                  <Box
-                    className={"dish_img"}
-                    sx={{
-                      backgroundImage: `url(/others/qovurma.jpeg)`,
-                    }}
-                  >
-                    <div className={"dish_sale"}>{size_volume}</div>
-                    <Button
-                      className={"like_view_btn"}
-                      style={{ left: "36px" }}
+              <Button variant={"contained"} color="secondary">
+                price
+              </Button>
+
+              <Button variant={"contained"} color="secondary">
+                likes
+              </Button>
+
+              <Button variant={"contained"} color="secondary">
+                views
+              </Button>
+            </Box>
+          </Stack>
+
+          <Stack
+            style={{ width: "100%", display: "flex", minHeight: "600px" }}
+            flexDirection={"row"}
+          >
+            <Stack className={"dish_category_box"}>
+              <div className={"dish_category_main"}>
+                <Button variant={"contained"} color="secondary">
+                  boshqa
+                </Button>
+
+                <Button variant={"contained"} color="secondary">
+                  deserd
+                </Button>
+
+                <Button variant={"contained"} color="secondary">
+                  ichimlik
+                </Button>
+
+                <Button variant={"contained"} color="secondary">
+                  ovqatlar
+                </Button>
+              </div>
+            </Stack>
+
+            <Stack className={"dish_wrapper"}>
+              {product_list.map((ele, index) => {
+                const size_volume = "normal size";
+
+                return (
+                  <Box className={"dish_box"}>
+                    <Box
+                      className={"dish_img"}
+                      sx={{
+                        backgroundImage: `url(/restaurant/stake_dishes.jpeg)`,
+                      }}
                     >
-                      <Badge badgeContent={8} color="primary">
-                        <Checkbox
-                          icon={<FavoriteBorder style={{ color: "white" }} />}
-                          id={`${index}`}
-                          checkedIcon={<Favorite style={{ color: "red" }} />}
-                          // @ts-ignore
-                          checked={true}
+                      <div className={"dish_sale"}>{size_volume}</div>
+                      <Button
+                        className={"like_view_btn"}
+                        style={{ left: "36px" }}
+                      >
+                        <Badge badgeContent={8} color="primary">
+                          <Checkbox
+                            icon={<FavoriteBorder style={{ color: "white" }} />}
+                            id={`${index}`}
+                            checkedIcon={<Favorite style={{ color: "red" }} />}
+                            // @ts-ignore
+                            checked={true}
+                          />
+                        </Badge>
+                      </Button>
+                      <Button className={"view_btn"}>
+                        <img
+                          src={"/icons/shopping_card.svg"}
+                          style={{ display: "flex" }}
                         />
-                      </Badge>
-                    </Button>
-                    <Button className={"view_btn"}>
-                      <img
-                        src={"/icons/shopping_cart.svg"}
-                        style={{ display: "flex" }}
-                      />
-                    </Button>
-                    <Button
-                      className={"like_view_btn"}
-                      style={{ right: "36px" }}
-                    >
-                      <Badge badgeContent={1000} color="primary">
-                        <Checkbox
-                          icon={<RemoveRedEyeIcon style={{ color: "white" }} />}
-                        />
-                      </Badge>
-                    </Button>
+                      </Button>
+                      <Button
+                        className={"like_view_btn"}
+                        style={{ right: "36px" }}
+                      >
+                        <Badge badgeContent={1000} color="primary">
+                          <Checkbox
+                            icon={
+                              <RemoveRedEyeIcon style={{ color: "white" }} />
+                            }
+                          />
+                        </Badge>
+                      </Button>
+                    </Box>
+                    <Box className={"dish_desc"}>
+                      <span className={"dish_title_text"}>Shirin qovurma</span>
+                      <div className={"dish_desc_text"}>
+                        <MonetizationOnIcon />7
+                      </div>
+                    </Box>
                   </Box>
-                  <Box className={"dish_desc"}>
-                    <span className={"dish_title_text"}>Shirin qovurma</span>
-                    <div className={"dish_desc_text"}>
-                      <MonetizationOnIcon />7
-                    </div>
-                  </Box>
-                </Box>
-              );
-            })}
+                );
+              })}
+            </Stack>
           </Stack>
         </Stack>
       </Container>
@@ -219,7 +221,7 @@ export function OneRestaurant() {
                 <Box className={"review_box"} key={index}>
                   <Box display={"flex"} justifyContent={"center"}>
                     <img
-                      src={"/community/cute_girl.jpg"}
+                      src={"/auth/cute_girl.jpeg"}
                       className={"review_img"}
                     />
                   </Box>
@@ -254,7 +256,7 @@ export function OneRestaurant() {
           <Box
             className={"about_left"}
             sx={{
-              backgroundImage: `url('/restaurant/texasDeBrazil.jpeg')`,
+              backgroundImage: `url('https://media-cdn.tripadvisor.com/media/photo-s/07/c4/92/02/getlstd-property-photo.jpg')`,
             }}
           >
             <div className={"about_left_desc"}>
