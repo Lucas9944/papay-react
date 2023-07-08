@@ -937,13 +937,9 @@
 .chosen_dish_page .dish_swiper {
     --swiper-navigation-color: "#fff";
     --swiper-pagination-color: "#fff";
-<<<<<<< HEAD
-    width: 611px;
+    width: 412px;
     height: 452px;
-=======
-    width: 100%;
-    height: 1020px;
->>>>>>> origin/develop
+    
 }
 
 .chosen_dish_page .chosen_dish_info_container {
@@ -1079,10 +1075,7 @@
 .chosen_dish_page .chosen_dish_slider .under_img {
     background-color: red;
     margin-top: 2rem;
-<<<<<<< HEAD
-    border: 2px solid yellow;
-=======
->>>>>>> origin/develop
+    border: 2px solid yellowgreen;
 }
 
 .chosen_dish_page .chosen_dish_slider .above_img {
