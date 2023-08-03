@@ -29,9 +29,7 @@ export function NavbarRestaurant(props: any) {
             className="navbar_links"
           >
             <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/">
-                Bosh Sahifa
-              </NavLink>
+              <NavLink to="/">Bosh Sahifa</NavLink>
             </Box>
 
             <Box className="hover-line" onClick={props.setPath}>
@@ -86,3 +84,4 @@ export function NavbarRestaurant(props: any) {
     </div>
   );
 }
+

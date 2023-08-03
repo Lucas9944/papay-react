@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable jsx-a11y/alt-text */
 
 import {
@@ -8,10 +9,16 @@ import {
   IconButton,
   Stack,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 export function NavbarHome(props: any) {
+  /** INITIALIZATION **/
+  const [count, setCount] = useState(0);
+  /** HANDLERS **/
+const countHandler = () => {
+  setCount(count + 1);
+}
   return (
     <div className="format home_navbar">
       <Container>
@@ -95,7 +102,7 @@ export function NavbarHome(props: any) {
             <Box className="define_restaurant">
               The Authentic Restaurant & Cafe
             </Box>
-            <Box className="timeline_service">24 soat hizmatingizda!</Box>
+            <Box className="timeline_service">{count} soat hizmatingizda!</Box>
             <Box sx={{ mt: "90px" }}>
               <Button
                 variant="contained"
@@ -105,6 +112,7 @@ export function NavbarHome(props: any) {
                   background: "#1976d2",
                   color: "#FFFFFF",
                 }}
+                onClick={() => setCount(count + 1)}
               >
                 RO'YXATDAN O'TISH
               </Button>
