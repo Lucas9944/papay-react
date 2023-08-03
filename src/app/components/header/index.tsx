@@ -9,16 +9,18 @@ import {
   IconButton,
   Stack,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 export function NavbarHome(props: any) {
   /** INITIALIZATION **/
   const [count, setCount] = useState(0);
-  /** HANDLERS **/
-const countHandler = () => {
-  setCount(count + 1);
-}
+  const [value, setValue] = useState(true);
+
+  useEffect(() => {
+    setCount(count + 1);
+  }, [value]);
+
   return (
     <div className="format home_navbar">
       <Container>

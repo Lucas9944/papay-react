@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-undef */
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Advertisements } from "./advertisements";
 import { BestDishes } from "./bestDishes";
 import { BestRestaurants } from "./bestRestaurants";
@@ -11,6 +11,14 @@ import { TopRestaurants } from "./topRestaurants";
 import "../../../css/home.css";
 
 export function HomePage() {
+  useEffect(() => {
+    console.log("componentDidMount => Data fetch");
+
+    return () => {
+      console.log("componentDidMount process");
+    };
+  }, []);
+
   return (
     <div className="homepage">
       <Statistics />
