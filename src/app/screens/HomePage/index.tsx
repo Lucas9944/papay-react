@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/jsx-no-undef */
 
 import React, { useEffect } from "react";
@@ -9,14 +11,41 @@ import { Recommondations } from "./recommendations";
 import { Statistics } from "./statistics";
 import { TopRestaurants } from "./topRestaurants";
 import "../../../css/home.css";
+import { Dispatch } from "@reduxjs/toolkit";
+import { createSelector } from "reselect";
+import {
+ 
+  setTopRestaurants,
+} from "../../screens/HomePage/slice";
+import { Restaurant } from "../../../types/user";
+import {  retrieveTopRestaurants } from "./selector";
+import { useDispatch, useSelector } from "react-redux";
+
+/* REDUC SLICE */
+const actionDispatch = (dispatch: Dispatch) => ({
+  setTopRestaurants: (data: Restaurant[]) => dispatch(setTopRestaurants(data)),
+});
+
+/* REDUX SELECTOR */
+
+const topRestaurantRetriever = createSelector(
+  retrieveTopRestaurants,
+  (topRestaurants) => ({
+    topRestaurants,
+  })
+);
 
 export function HomePage() {
-  useEffect(() => {
-    console.log("componentDidMount => Data fetch");
+  /** INITIALIZE */
+  const { setTopRestaurants } = actionDispatch(useDispatch());
+  const { topRestaurants } = useSelector(topRestaurantRetriever);
 
-    return () => {
-      console.log("componentDidMount process");
-    };
+  
+
+  useEffect(() => {
+    // backend data request => data
+   
+    setTopRestaurants([]);
   }, []);
 
   return (
