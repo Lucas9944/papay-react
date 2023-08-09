@@ -1,51 +1,61 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react/jsx-no-undef */
-
 import React, { useEffect } from "react";
-import { Advertisements } from "./advertisements";
-import { BestDishes } from "./bestDishes";
+import { Container } from "@mui/material";
 import { BestRestaurants } from "./bestRestaurants";
-import { Events } from "./events";
-import { Recommondations } from "./recommendations";
-import { Statistics } from "./statistics";
 import { TopRestaurants } from "./topRestaurants";
+import { Statistics } from "./statistics";
+import BestDishes from "./bestDishes"; // Bu qatorda o'zgart
+import { Advertisements } from "./advertisements";
+import { Events } from "./events";
+import { Recommendations } from "./recommendations";
 import "../../../css/home.css";
+
+// REDUX
+import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
 import {
- 
+  setBestRestaurants,
   setTopRestaurants,
 } from "../../screens/HomePage/slice";
+import { retrieveTopRestaurants } from "../../screens/HomePage/selector";
 import { Restaurant } from "../../../types/user";
-import {  retrieveTopRestaurants } from "./selector";
-import { useDispatch, useSelector } from "react-redux";
+import RestaurantApiService from "../../apiServices/restaurantApiService";
 
-/* REDUC SLICE */
-const actionDispatch = (dispatch: Dispatch) => ({
-  setTopRestaurants: (data: Restaurant[]) => dispatch(setTopRestaurants(data)),
+/** REDUX SLICE */
+const actionDispatch = (dispach: Dispatch) => ({
+  // action dispach hosil qilinib uni interface si ko'rsatilyapti
+  setTopRestaurants: (data: Restaurant[]) => dispach(setTopRestaurants(data)),
+  // setTopRes ga Resta array type data berilyapti
+  // u data setTopRes ichiga yuborilyapti
+  // kelgan data slice ichida action playloadda o'zgartirilyapti
+  setBestRestaurants: (data: Restaurant[]) => dispach(setBestRestaurants(data)),
 });
 
-/* REDUX SELECTOR */
-
-const topRestaurantRetriever = createSelector(
-  retrieveTopRestaurants,
-  (topRestaurants) => ({
-    topRestaurants,
-  })
-);
-
 export function HomePage() {
-  /** INITIALIZE */
-  const { setTopRestaurants } = actionDispatch(useDispatch());
-  const { topRestaurants } = useSelector(topRestaurantRetriever);
+  /** INITIALIZATION */
+  const { setTopRestaurants, setBestRestaurants } = actionDispatch(
+    useDispatch()
+  );
 
-  
-
+  //useEff doim syncrenis bo'lishi kk shu un then catch ish, async await emas!
   useEffect(() => {
     // backend data request => data
-   
-    setTopRestaurants([]);
+    const restaurantService = new RestaurantApiService();
+    restaurantService
+      .getTopRestaurants()
+      .then((data) => {
+        setTopRestaurants(data);
+      })
+      .catch((err) => console.log(err));
+
+    restaurantService
+      .getRestaurants({ page: 1, limit: 4, order: "mb_point" })
+      .then((data) => {
+        setBestRestaurants(data);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (
@@ -56,7 +66,7 @@ export function HomePage() {
       <BestDishes />
       <Advertisements />
       <Events />
-      <Recommondations />
+      <Recommendations />
     </div>
   );
 }
