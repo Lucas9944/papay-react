@@ -1,5 +1,4 @@
-import { Box, Stack } from "@mui/material";
-import { Container } from "@mui/system";
+import { Box, Container, Stack } from "@mui/material";
 import React from "react";
 import Marginer from "../../components/header/marginer";
 
@@ -11,32 +10,27 @@ export function Statistics() {
           flexDirection={"row"}
           justifyContent={"space-between"}
           alignItems={"center"}
-          style={{ height: "236px" }}
+          style={{height: "236px"}}
         >
           <div className="personage_img left"></div>
           <Stack className="static_box">
             <Box className="static_num">12</Box>
             <Box className="static_text">Restaurants</Box>
           </Stack>
-          <Marginer direction="vertical" height="64" width="2" bg="#E3C08D" />
-
+          <Marginer direction="vertical" height="64" width="2" bg="#e3c08d"/>
           <Stack className="static_box">
             <Box className="static_num">8</Box>
-            <Box className="static_text">Years Expirence</Box>
+            <Box className="static_text">Years of Experience</Box>
           </Stack>
-
-          <Marginer direction="vertical" height="64" width="2" bg="#E3C08D" />
-
+          <Marginer direction="vertical" height="64" width="2" bg="#e3c08d"/>
           <Stack className="static_box">
             <Box className="static_num">50+</Box>
-            <Box className="static_text">Menu ovqatlar</Box>
+            <Box className="static_text">Menu Dishes</Box>
           </Stack>
-
-          <Marginer direction="vertical" height="64" width="2" bg="#E3C08D" />
-
+          <Marginer direction="vertical" height="64" width="2" bg="#e3c08d"/>
           <Stack className="static_box">
             <Box className="static_num">200+</Box>
-            <Box className="static_text">Foydalanuvchilar</Box>
+            <Box className="static_text">Users</Box>
           </Stack>
           <div className="personage_img right"></div>
         </Stack>

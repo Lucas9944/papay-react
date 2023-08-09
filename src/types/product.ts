@@ -1,4 +1,11 @@
+export interface MeLiked {
+  mb_id: string;
+  like_ref_id: string;
+  my_favorite: boolean;
+}
+
 export interface Product {
+  _id: string;
   product_name: string;
   product_collection: string;
   product_status: string;
@@ -15,10 +22,4 @@ export interface Product {
   createdAt: Date;
   updatedAt: Date;
   me_liked: MeLiked[];
-}
-
-export interface MeLiked {
-  mb_id: string;
-  like_ref_id: string;
-  my_favorite: boolean;
 }

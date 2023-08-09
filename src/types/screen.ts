@@ -7,7 +7,8 @@ export interface AppRootState {
 }
 
 export interface HomePageState {
-  topRestaurants: Restaurant[];
+  // topRes restaurant objectidan tashkil topgan arraylardan iborat
+  topRestaurants: Restaurant[]; 
   bestRestaurants: Restaurant[];
   trendProducts: Product[];
   bestBoArticles: BoArticle[];

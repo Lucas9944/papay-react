@@ -1,6 +1,12 @@
-import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import reduxLogger from "redux-logger";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import {
+  configureStore,
+  ThunkAction,
+  Action,
+  getDefaultMiddleware,
+} from "@reduxjs/toolkit";
 import HomePageReducer from "./screens/HomePage/slice";
+import reduxLogger from "redux-logger";
 
 export const store = configureStore({
   middleware: (getDefaultMiddleware) =>

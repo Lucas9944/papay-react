@@ -1,6 +1,6 @@
 import { MeLiked } from "./product";
 import { Member } from "./user";
-
+// interface bu custom typescripti biz yozib olgan
 export interface BoArticle {
   _id: string;
   art_subject: string;
