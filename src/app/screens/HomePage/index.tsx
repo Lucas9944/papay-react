@@ -5,12 +5,20 @@ import { Container } from "@mui/material";
 import { BestRestaurants } from "./bestRestaurants";
 import { TopRestaurants } from "./topRestaurants";
 import { Statistics } from "./statistics";
+<<<<<<< HEAD
 import BestDishes from "./bestDishes"; // Bu qatorda o'zgart
+=======
+// import { BestDishes } from "./bestDishes";
+>>>>>>> origin/develop
 import { Advertisements } from "./advertisements";
 import { Events } from "./events";
 import { Recommendations } from "./recommendations";
 import "../../../css/home.css";
+<<<<<<< HEAD
 ///
+=======
+
+>>>>>>> origin/develop
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
@@ -63,7 +71,7 @@ export function HomePage() {
       <Statistics />
       <TopRestaurants />
       <BestRestaurants />
-      <BestDishes />
+      {/* <BestDishes /> */}
       <Advertisements />
       <Events />
       <Recommendations />
