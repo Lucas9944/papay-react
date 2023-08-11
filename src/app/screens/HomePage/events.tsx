@@ -12,21 +12,21 @@ export function Events() {
   const events_list = [
     {
       id: 1,
-      title: "Bo'yin Foodga marhamat",
+      title: "Sandvichga marhamat",
       desc: "Yangicha uslubda, yangicha tam va yangicha uslub",
-      author: "Abdurahmon Mufid",
+      author: "Lucas Genius",
       date: "2022/09/02",
       location: "Toshkent, Nurafshon ko'cha",
-      img: "/restaurant/boynfood.jpeg",
+      img: "/others/kings_sandvich.jpeg",
     },
     {
       id: 2,
       title: "Katta chegirma endi Belissimoda",
       desc: "Faqat 25 ~ 31 ~ iyul kunlari antiqa Pitsa yegani tashrif buyuring",
-      author: "BelissimoUz",
+      author: "PizzaUz",
       date: "2022/07/25",
       location: "Toshkent, Chilonzor",
-      img: "/restaurant/belissimo.jpeg",
+      img: "/restaurant/pizza.png",
     },
     {
       id: 3,
@@ -35,7 +35,7 @@ export function Events() {
       author: "Stake House",
       date: "2022/09/10",
       location: "Toshkent, Qo'yliq",
-      img: "/restaurant/merhaba.jpeg",
+      img: "/restaurant/stake_dishes.jpeg",
     },
     {
       id: 4,
@@ -44,7 +44,7 @@ export function Events() {
       author: "Food City",
       date: "2022/08/08",
       location: "Toshkent, yangi Qo'yliq bozori",
-      img: "/restaurant/food_city.jpeg",
+      img: "/restaurant/wawlik.jpeg",
     },
   ];
 

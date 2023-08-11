@@ -36,7 +36,7 @@ export function BestRestaurants() {
   return (
     <div className="best_restaurant_frame">
       <img
-        src={"icons/kafel.svg"}
+        src={"/icons/kafel.1.svg"}
         style={{
           position: "absolute",
           left: "6%",
@@ -46,7 +46,11 @@ export function BestRestaurants() {
       <Container sx={{ scrollPaddingTop: "153px" }}>
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Box className="catigory_title">Zo'r Restaurantlar</Box>
-          <Stack sx={{ mt: "43px" }} flexDirection={"row"}>
+          <Stack
+            sx={{ mt: "43px" }}
+            flexDirection={"row"}
+            style={{ marginTop: "120px" }}
+          >
             {bestRestaurants.map((ele: Restaurant) => {
               const image_path = `${serverApi}/${ele.mb_image}`;
               return (

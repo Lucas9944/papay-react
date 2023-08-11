@@ -1,7 +1,6 @@
 import { createSelector } from "reselect";
 import { AppRootState } from "../../../types/screen";
-// import { homedir } from "os";
-// import { HomePage } from ".";
+
 
 const selectHomePage = ( state: AppRootState ) => state.homePage;
 export const retrieveTopRestaurants = createSelector(

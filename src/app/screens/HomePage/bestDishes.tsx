@@ -1,36 +1,4 @@
-<<<<<<< HEAD
 /* eslint-disable react-hooks/exhaustive-deps */
-import { MonetizationOn } from "@mui/icons-material";
-import { Box, Container, Stack } from "@mui/material";
-import { Dispatch, createSelector } from "@reduxjs/toolkit";
-import React, { useEffect } from "react";
-import { setTrendProducts } from "./slice";
-import { Product } from "../../../types/product";
-import { useDispatch, useSelector } from "react-redux";
-import ProductApiService from "../../apiServices/productApiService";
-import { retrieveTrendProducts } from "./selector";
-import { serverApi } from "../../../lib/config";
-
-/**REDUX SLICE */
-
-const actionDispatch = (dispatch: Dispatch) => ({
-  setTrendProducts: (data: Product[]) => dispatch(setTrendProducts(data)),
-});
-
-/* REDUX SELECTOR */
-
-const trendProductsRetriever = createSelector(
-  retrieveTrendProducts,
-  (trendProducts) => ({
-    trendProducts,
-  })
-);
-
-const BestDishes = () => {
-  /**INITIALIZATION */
-  const { setTrendProducts } = actionDispatch(useDispatch());
-  const { trendProducts } = useSelector(trendProductsRetriever);
-=======
 /* eslint-disable jsx-a11y/alt-text */
 import { MonetizationOn } from "@mui/icons-material";
 import { Box, Container, Stack } from "@mui/material";
@@ -59,56 +27,13 @@ export function BestDishes() {
   const { setTrendProducts } = actionDispatch(useDispatch());
   const { trendProducts } = useSelector(trendProductsRetriever);
 
->>>>>>> origin/develop
   useEffect(() => {
     const productService = new ProductApiService();
     productService
       .getTargetProducts({ order: "product_likes", page: 1, limit: 4 })
       .then((data) => setTrendProducts(data))
       .catch((err) => console.log(err));
-<<<<<<< HEAD
   }, []);
-  return (
-    <div className="best_dishes_frame">
-      <Container>
-        <Stack flexDirection={"column"} alignItems={"center"}>
-          <Box className="category_title">Trenddagi Ovqatlar</Box>
-          <Stack sx={{ mt: "43px" }} flexDirection={"row"}>
-            {trendProducts.map((product: Product) => {
-              console.log(
-                "🚀 ~ file: bestDishes.tsx:45 ~ {trendProducts.map ~ product:",
-                product
-              );
-              const image_path = `${serverApi}/${product.product_images[0]}`;
-              console.log(
-                "🚀 ~ file: bestDishes.tsx:51 ~ {trendProducts.map ~ image_path:",
-                image_path
-              );
-
-              const size_volume =
-                product.product_collection === "drink"
-                  ? product.product_volume + "l"
-                  : product.product_size + " size";
-              return (
-                <Box className="dish_box">
-                  <Stack
-                    className="dish_img"
-                    // sx={{
-                    //   backgroundImage: `url(${image_path})`,
-                    // }}
-                  >
-                    <div className="trend_meals">
-                      <img src={image_path} alt="Trend_meals" />
-                    </div>
-                    <div className="dish_sale">{size_volume}</div>
-                    <div className="view_btn">
-                      Batafsil ko'rish
-                      <img
-                        src="/icons/arrow-right.svg"
-                        alt="right"
-                        style={{ marginLeft: "9px" }}
-=======
-  }, [setTrendProducts]);
 
   return (
     <div className="best_dishes_frame">
@@ -116,7 +41,7 @@ export function BestDishes() {
         <Stack flexDirection="column" alignItems="center">
           <Box className="catigory_title">Trendagi Ovqatlar</Box>
           <Stack sx={{ mt: "43px" }} flexDirection="row">
-            {trendProducts.map((product: Product, index: number) => {
+            {trendProducts?.map((product: Product, index: number) => {
               const image_path = `${serverApi}/${product.product_images[0]}`;
               const size_volume =
                 product.product_collection === "drink"
@@ -138,7 +63,6 @@ export function BestDishes() {
                         src="/icons/arrow_right.svg"
                         style={{ marginLeft: "9px" }}
                         alt="Arrow Right"
->>>>>>> origin/develop
                       />
                     </div>
                   </Stack>

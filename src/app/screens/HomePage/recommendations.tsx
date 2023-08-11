@@ -31,7 +31,7 @@ export function Recommendations() {
                     <div className={"article_author"}>
                       <Avatar
                         alt="Author_photo"
-                        src={"/auth/default_user.svg"}
+                        src={"/restaurant/ochki.png"}
                         sx={{ width: "35px", height: "35px" }}
                       />
                       <span className={"author_username"}>Jonibek</span>
@@ -55,7 +55,7 @@ export function Recommendations() {
                     <div className={"article_author"}>
                       <Avatar
                         alt="Author_photo"
-                        src={"/auth/default_user.svg"}
+                        src={"/restaurant/ochki.png"}
                         sx={{ width: "35px", height: "35px" }}
                       />
                       <span className={"author_username"}>Jonibek</span>
@@ -80,7 +80,7 @@ export function Recommendations() {
                     <div className={"article_author"}>
                       <Avatar
                         alt="Author_photo"
-                        src={"/auth/default_user.svg"}
+                        src={"/restaurant/ochki.png"}
                         sx={{ width: "35px", height: "35px" }}
                       />
                       <span className={"author_username"}>Jonibek</span>
@@ -104,7 +104,7 @@ export function Recommendations() {
                     <div className={"article_author"}>
                       <Avatar
                         alt="Author_photo"
-                        src={"/auth/default_user.svg"}
+                        src={"/restaurant/ochki.png"}
                         sx={{ width: "35px", height: "35px" }}
                       />
                       <span className={"author_username"}>Jonibek</span>
