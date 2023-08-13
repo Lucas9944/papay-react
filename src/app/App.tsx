@@ -1,5 +1,5 @@
 // import { Container } from "@mui/material";
-import React, { useState , useEffect} from "react";
+import React, { useState } from "react";
 import "../css/App.css";
 import "../css/navbar.css";
 import "../css/footer.css";
@@ -17,6 +17,7 @@ import { NavbarHome } from "./components/header";
 import { NavbarRestaurant } from "./components/header/restaurant";
 import { NavbarOthers } from "./components/header/others";
 import { Footer } from "./components/header/footer";
+import AuthenticationModal from "./components/auth";
 // import Car from "./screens/testCar";
 
 function App() {
@@ -61,6 +62,7 @@ function App() {
       </Switch>
 
       <Footer />
+      <AuthenticationModal />
     </Router>
   );
 }
