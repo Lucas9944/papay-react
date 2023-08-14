@@ -16,7 +16,7 @@ import { TargetArticles } from "./targetArticles";
 import Marginer from "../../components/header/marginer";
 
 export function CommunityPage(props: any) {
-  // INITIALIZATIONS
+  /** INITIALIZATIONS **/
   const [value, setValue] = React.useState("1");
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {

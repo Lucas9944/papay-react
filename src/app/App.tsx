@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react/jsx-no-duplicate-props */
 // import { Container } from "@mui/material";
 import React, { useState } from "react";
 import "../css/App.css";
@@ -21,19 +23,40 @@ import AuthenticationModal from "./components/auth";
 // import Car from "./screens/testCar";
 
 function App() {
+  /** INITIALIZATIONS **/
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [path, setPath] = useState();
   const main_path = window.location.pathname;
   console.log("main_path", main_path);
+  const [signUpOpen, setSignUpOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
+
+  /** HANDLERS **/
+  const handleSignUpOpen = () => setSignUpOpen(true);
+  const handleSignUpClose = () => setSignUpOpen(false);
+  const handleLoginOpen = () => setLoginOpen(true);
+  const handleLoginClose = () => setLoginOpen(false);
 
   return (
     <Router>
       {main_path === "/" ? (
-        <NavbarHome setPath={setPath} />
+        <NavbarHome
+          setPath={setPath}
+          handleLoginOpen={handleLoginOpen}
+          handleSignUpOpen={handleSignUpOpen}
+        />
       ) : main_path.includes("/restaurant") ? (
-        <NavbarRestaurant setPath={setPath} />
+        <NavbarRestaurant
+          setPath={setPath}
+          handleLoginOpen={handleLoginOpen}
+          handleSignUpOpen={handleSignUpOpen}
+        />
       ) : (
-        <NavbarOthers setPath={setPath} />
+        <NavbarOthers
+          setPath={setPath}
+          handleLoginOpen={handleLoginOpen}
+          handleSignUpOpen={handleSignUpOpen}
+        />
       )}
 
       <Switch>
@@ -62,7 +85,14 @@ function App() {
       </Switch>
 
       <Footer />
-      <AuthenticationModal />
+      <AuthenticationModal
+        loginOpen={loginOpen}
+        handleLoginOpen={handleLoginOpen}
+        handleLoginClose={handleLoginClose}
+        signUpOpen={signUpOpen}
+        handleSignUpOpen={handleLoginOpen}
+        handleSignUpClose={handleLoginClose}
+      />
     </Router>
   );
 }

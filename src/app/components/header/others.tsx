@@ -29,9 +29,7 @@ export function NavbarOthers(props: any) {
             className="navbar_links"
           >
             <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/">
-                Bosh Sahifa
-              </NavLink>
+              <NavLink to="/">Bosh Sahifa</NavLink>
             </Box>
 
             <Box className="hover-line" onClick={props.setPath}>
@@ -76,6 +74,7 @@ export function NavbarOthers(props: any) {
               <Button
                 variant="contained"
                 style={{ color: "#FFFFFF", background: "#1976d2" }}
+                onClick={props.handleLoginOpen}
               >
                 KIRISH
               </Button>

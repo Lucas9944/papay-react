@@ -12,7 +12,7 @@ import Button from "@mui/material/Button";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 
 export function HelpPage() {
-  /** INITIALIZATION **/
+  /** INITIALIZATIONS **/
   const [value, setValue] = React.useState("1");
   const faq = [
     {
