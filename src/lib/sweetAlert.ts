@@ -51,7 +51,7 @@ export const sweetTopSmallSuccessAlert = async (
 
   Toast.fire({
     icon: "success",
-    title: "msg",
+    title: msg,
   }).then((data) => {
     if (enable_forward) {
       window.location.reload();

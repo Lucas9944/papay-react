@@ -1,10 +1,5 @@
 import Cookie from "universal-cookie";
 
-// const cookie = new Cookie();
-// if (!cookie.get("access_token")) {
-//   localStorage.removeItem("member_data");
-//}
-
 const cookie = new Cookie();
 let member_data: any = null;
 
