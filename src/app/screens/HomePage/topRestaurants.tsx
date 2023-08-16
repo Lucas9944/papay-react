@@ -18,7 +18,10 @@ import { createSelector } from "reselect";
 import { retrieveTopRestaurants } from "../../screens/HomePage/selector";
 import { Restaurant } from "../../../types/user";
 import { serverApi } from "../../../lib/config";
-import { sweetErrorHandling } from "../../../lib/sweetAlert";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
 import assert from "assert";
 import { Definer } from "../../../lib/Definer";
 import MemberApiService from "../../apiServices/memberApiService";
@@ -43,7 +46,6 @@ export function TopRestaurants() {
   const chosenRestaurantHandler = (id: string) => {
     history.push(`/restaurant/${id}`);
   };
-
   const targetLikeTop = async (e: any, id: string) => {
     try {
       assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
@@ -62,6 +64,7 @@ export function TopRestaurants() {
         e.target.style.fill = "white";
         refs.current[like_result.like_ref_id].innerHTML--;
       }
+      await sweetTopSmallSuccessAlert("success", 700, false);
     } catch (err: any) {
       console.log(`targetLikeTop, ERROR:`, err);
       sweetErrorHandling(err).then();
@@ -138,6 +141,9 @@ export function TopRestaurants() {
                           bottom: 45,
                           transform: "translateY(50%)",
                           color: "rgba(0, 0, 0, .4)",
+                        }}
+                        onClick={(e) => {
+                          e.stopPropagation();
                         }}
                       >
                         <Favorite
