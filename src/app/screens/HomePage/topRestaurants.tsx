@@ -117,6 +117,7 @@ export function TopRestaurants() {
                         textColor="neutral.300"
                       >
                         {ele.mb_address}
+                        대구 주변 경산 조영동 62-1
                       </Typography>
                     </CardContent>
                     <CardOverflow

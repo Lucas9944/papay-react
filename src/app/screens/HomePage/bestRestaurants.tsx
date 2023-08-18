@@ -148,6 +148,7 @@ export function BestRestaurants() {
                         textColor="neutral.70"
                       >
                         {ele.mb_address}
+                        Toshkent Shahri Zarafshon 14-1
                       </Link>
                     </Typography>
                     <Typography level="body2" sx={{ mt: 0.5, mb: 2 }}>

@@ -24,8 +24,7 @@ class RestaurantApiService {
 
       console.log("state:", result.data.state);
       const top_restaurants: Restaurant[] = result.data.data;
-      console.log("lucas_restaraunt", top_restaurants);
-      
+
       return top_restaurants;
     } catch (err: any) {
       console.log(`ERROR ::: getTopRestaurants ${err.message}`);
