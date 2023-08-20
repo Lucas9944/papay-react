@@ -7,6 +7,9 @@ import { SearchObj } from "../../types/others";
 const lucas = "http://localhost:3003/restaurants?order=top&page=1&limit=4";
 
 class RestaurantApiService {
+  getChosenRestaurants(chosenRestaurantId: string) {
+    throw new Error("Method not implemented.");
+  }
   private readonly path: string;
 
   // consdan keyingi () are used to declare any parameters that you
