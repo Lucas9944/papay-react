@@ -77,7 +77,7 @@ const targetProductsRetriever = createSelector(
   })
 );
 
-export function OneRestaurant() {
+export function OneRestaurant(props: any) {
   /** INITIALIZATIONS **/
   const history = useHistory();
   const refs: any = useRef([]);
@@ -327,7 +327,10 @@ export function OneRestaurant() {
                     ? product.product_volume + "l"
                     : product.product_size + "size";
                 return (
-                  <Box className={"dish_box"} key={product._id}>
+                  <Box
+                    className={"dish_box"}
+                    onClick={() => chosenDishHandler(product._id)}
+                  >
                     <Box
                       className={"dish_img"}
                       sx={{
@@ -358,7 +361,13 @@ export function OneRestaurant() {
                           />
                         </Badge>
                       </Button>
-                      <Button className={"view_btn"}>
+                      <Button
+                        className={"view_btn"}
+                        onClick={(e) => {
+                          props.onAdd(product);
+                          e.stopPropagation();
+                        }}
+                      >
                         <img
                           src={"/icons/shopping_card.svg"}
                           style={{ display: "flex" }}

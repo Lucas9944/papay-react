@@ -333,7 +333,7 @@
 .single_restaurant .dishs_filter_box {
     display: flex;
     flex-direction: row;
-    justify-content: ce;
+    justify-content: space-between;
 }
 
 .restaurant_page .single_restaurant .restaurant_avatars_wrapper .restaurant_avatars {
@@ -926,7 +926,7 @@
 
 .chosen_dish_page .chosen_dish_slider {
     width: 48%;
-   
+
 }
 
 .chosen_dish_page .dish_swiper {

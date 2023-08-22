@@ -64,6 +64,7 @@ export function BestDishes() {
                     className="dish_img"
                     sx={{
                       backgroundImage: `url(${image_path})`,
+                      
                     }}
                   >
                     <div className="dish_sale">{size_volume}</div>
