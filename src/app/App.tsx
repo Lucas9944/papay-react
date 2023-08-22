@@ -167,6 +167,7 @@ function App() {
           onAdd={onAdd}
           onRemove={onRemove}
           onDelete={onDelete}
+          onDeleteAll={onDeleteAll}
         />
       ) : main_path.includes("/restaurant") ? (
         <NavbarRestaurant
@@ -183,6 +184,7 @@ function App() {
           onAdd={onAdd}
           onRemove={onRemove}
           onDelete={onDelete}
+          onDeleteAll={onDeleteAll}
         />
       ) : (
         <NavbarOthers
@@ -199,6 +201,7 @@ function App() {
           onAdd={onAdd}
           onRemove={onRemove}
           onDelete={onDelete}
+          onDeleteAll={onDeleteAll}
         />
       )}
 
