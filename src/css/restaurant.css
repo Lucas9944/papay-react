@@ -333,7 +333,7 @@
 .single_restaurant .dishs_filter_box {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: ce;
 }
 
 .restaurant_page .single_restaurant .restaurant_avatars_wrapper .restaurant_avatars {
@@ -430,12 +430,6 @@
     width: 30%;
 }
 
-.restaurant_page .single_restaurant .swiper-wrapper,
-.single_restaurant .dishs_filter_box {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
 
 .restaurant_page .single_restaurant .dish_category_box {
     display: flex;
@@ -932,14 +926,19 @@
 
 .chosen_dish_page .chosen_dish_slider {
     width: 48%;
+   
 }
 
 .chosen_dish_page .dish_swiper {
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
     --swiper-navigation-color: "#fff";
     --swiper-pagination-color: "#fff";
     width: 412px;
     height: 452px;
-    
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .chosen_dish_page .chosen_dish_info_container {
@@ -1072,11 +1071,11 @@
     left: 42%;
 }
 
-.chosen_dish_page .chosen_dish_slider .under_img {
+/* .chosen_dish_page .chosen_dish_slider .under_img {
     background-color: red;
     margin-top: 2rem;
     border: 2px solid yellowgreen;
-}
+} */
 
 .chosen_dish_page .chosen_dish_slider .above_img {
     border-radius: 20px;

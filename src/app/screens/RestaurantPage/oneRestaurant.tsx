@@ -24,7 +24,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import {
   retrieveRandomRestaurants,
-  retrieveChosenRestaurants,
+  retrieveChosenRestaurant,
   retrieveTargetProducts,
 } from "../../screens/RestaurantPage/selector";
 import { Restaurant } from "../../../types/user";
@@ -64,7 +64,7 @@ const randomRestaurantsRetriever = createSelector(
 );
 
 const chosenRestaurantRetriever = createSelector(
-  retrieveChosenRestaurants,
+  retrieveChosenRestaurant,
   (chosenRestaurant) => ({
     chosenRestaurant,
   })
@@ -105,6 +105,10 @@ export function OneRestaurant() {
       .getRestaurants({ page: 1, limit: 10, order: "random" })
       .then((data) => setRandomRestaurants(data))
       .catch((err) => console.log(err));
+    restaurantService
+      .getChosenRestaurant(chosenRestaurantId)
+      .then((data) => setChosenRestaurant(data))
+      .catch((err) => console.log(err));
 
     const productService = new ProductApiService();
     productService
@@ -124,6 +128,10 @@ export function OneRestaurant() {
     targetProductSearchObj.page = 1;
     targetProductSearchObj.product_collection = collection;
     setTargetProductSearchObj({ ...targetProductSearchObj });
+  };
+
+  const chosenDishHandler = (id: string) => {
+    history.push(`/restaurant/dish/${id}`);
   };
 
   const searchOrderHandler = (order: string) => {
@@ -156,7 +164,7 @@ export function OneRestaurant() {
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Stack className={"avatar_big_box"}>
             <Box className={"top_text"}>
-              <p>Texas De Brazil Restaurant</p>
+              <p>{chosenRestaurant?.mb_nick} Restaurant!</p>
               <Box className={"Single_search_big_box"}>
                 <form className={"Single_search_form"} action={""} method={""}>
                   <input
@@ -280,7 +288,7 @@ export function OneRestaurant() {
                 <Button
                   variant={"contained"}
                   color="secondary"
-                  onClick={() => searchCollectionHandler("desert")}
+                  onClick={() => searchCollectionHandler("dessert")}
                 >
                   desert
                 </Button>
@@ -398,7 +406,7 @@ export function OneRestaurant() {
             alignItems: "center",
           }}
         >
-          <Box className={"catigory_title"}> Oshhona haqida fikrlar</Box>
+          <Box className={"category_title"}> Oshhona haqida fikrlar</Box>
           <Stack
             flexDirection={"row"}
             display={"flex"}
@@ -435,7 +443,7 @@ export function OneRestaurant() {
       </div>
 
       <Container className="member_reviews">
-        <Box className={"catigory_title"}>Oshxona haqida</Box>
+        <Box className={"category_title"}>Oshxona haqida</Box>
         <Stack
           display={"flex"}
           flexDirection={"row"}
@@ -445,12 +453,12 @@ export function OneRestaurant() {
           <Box
             className={"about_left"}
             sx={{
-              backgroundImage: `url('https://media-cdn.tripadvisor.com/media/photo-s/07/c4/92/02/getlstd-property-photo.jpg')`,
+              backgroundImage: `url(${serverApi}/${chosenRestaurant?.mb_image})`,
             }}
           >
             <div className={"about_left_desc"}>
-              <span>Burak</span>
-              <p>Eng mazzali oshxona</p>
+              <span>{chosenRestaurant?.mb_nick} Restaurant</span>
+              <p>{chosenRestaurant?.mb_description}</p>
             </div>
           </Box>
           <Box className={"about_right"}>
@@ -479,7 +487,7 @@ export function OneRestaurant() {
             alignItems: "center",
           }}
         >
-          <Box className={"catigory_title"}>Oshxona Manzili</Box>
+          <Box className={"category_title"}>Oshxona Manzili</Box>
           <iframe
             style={{ marginTop: "60px" }}
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.363734762081!2d69.2267250514616!3d41.322703307863044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b9a0a33281d%3A0x9c5015eab678e435!2z0KDQsNC50YXQvtC9!5e0!3m2!1sko!2skr!4v1655461169573!5m2!1sko!2skr"
