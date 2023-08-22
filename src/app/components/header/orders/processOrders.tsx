@@ -3,17 +3,33 @@ import { Box, Stack } from "@mui/material";
 import TabPanel from "@mui/lab/TabPanel";
 import React from "react";
 
-const pausedOrders = [
+// REDUX
+import { useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retrieveProcessOrders } from "../../../screens/OrdersPage/selector";
+import pausedOrders from "./pausedOrders";
+
+/** REDUX SELECTOR */
+const processOrdersRetriever = createSelector(
+  retrieveProcessOrders,
+  (processOrders) => ({
+    processOrders,
+  })
+);
+
+const processOrders = [
   [1, 2, 3],
   [1, 2, 3],
   [1, 2, 3],
 ];
 
 export default function ProcessOrders(props: any) {
+  /** INITIALIZATIONS **/
+  // const { pausedOrders } = useSelector(pausedOrdersRetriever);
   return (
     <TabPanel value={"2"}>
       <Stack>
-        {pausedOrders?.map((order) => {
+        {processOrders?.map((order) => {
           return (
             <Box className={"order_main_box"}>
               <Box className={"order_box_scroll"}>
@@ -33,10 +49,7 @@ export default function ProcessOrders(props: any) {
                     </Box>
                   );
                 })}
-                <Box
-                  className={"total_price_box_2 "}
-                 
-                >
+                <Box className={"total_price_box_2 "}>
                   <Box className={"boxTotal"}>
                     <p>mahsulot narhi</p>
                     <p>$17</p>

@@ -2,15 +2,28 @@
 import { Box, Stack } from "@mui/material";
 import TabPanel from "@mui/lab/TabPanel";
 import React from "react";
+// REDUX
+import { useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retrieveFinishedOrders } from "../../../screens/OrdersPage/selector";
+
+/** REDUX SELECTOR */
+const finishedOrdersRetriever = createSelector(
+  retrieveFinishedOrders,
+  (finishedOrders) => ({
+    finishedOrders,
+  })
+);
 
 const pausedOrders = [
   [1, 2, 3],
   [1, 2, 3],
   [1, 2, 3],
-  
 ];
 
 export default function FinishedOrders(props: any) {
+  /** INITIALIZATIONS **/
+  // const { pausedOrders } = useSelector(pausedOrdersRetriever);
   return (
     <TabPanel value={"3"}>
       <Stack>
@@ -34,22 +47,26 @@ export default function FinishedOrders(props: any) {
                     </Box>
                   );
                 })}
-              <Box className={"total_price_box red_solid"}>
-                <Box className={"boxTotal"} >
+                <Box className={"total_price_box red_solid"}>
+                  <Box className={"boxTotal"}>
                     <p>mahsulot narhi</p>
                     <p>$17</p>
-                    <img src="/icons/plus.svg" alt="" style={{ marginLeft: "20px"}} />
+                    <img
+                      src="/icons/plus.svg"
+                      alt=""
+                      style={{ marginLeft: "20px" }}
+                    />
                     <p>yetkazib berish</p>
                     <p>$2</p>
-                    <img src="/icons/pause.svg" 
-                    style={{ marginLeft: "20px"}}
+                    <img
+                      src="/icons/pause.svg"
+                      style={{ marginLeft: "20px" }}
                     />
                     <p>jami narx</p>
                     <p>$24</p>
+                  </Box>
                 </Box>
               </Box>
-              </Box>
-
             </Box>
           );
         })}

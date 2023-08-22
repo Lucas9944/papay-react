@@ -7,11 +7,12 @@ import { Restaurant } from "./user";
 export interface AppRootState {
   homePage: HomePageState;
   restaurantPage: RestaurantPageState;
+  ordersPage: OrdersPageState;
 }
 
 export interface HomePageState {
   // topRes restaurant objectidan tashkil topgan arraylardan iborat
-  topRestaurants: Restaurant[]; 
+  topRestaurants: Restaurant[];
   bestRestaurants: Restaurant[];
   trendProducts: Product[];
   bestBoArticles: BoArticle[];
@@ -30,7 +31,7 @@ export interface RestaurantPageState {
 
 /** ORDERS PAGE **/
 export interface OrdersPageState {
-  pausedOrders: Order[],
-  processOrders: Order[],
-  finishedOrders: Order[]
+  pausedOrders: Order[];
+  processOrders: Order[];
+  finishedOrders: Order[];
 }
