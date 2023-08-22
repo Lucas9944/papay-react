@@ -19,7 +19,6 @@ import { NavLink } from "react-router-dom";
 import { sweetTopSuccessAlert } from "../../../lib/sweetAlert";
 
 export function NavbarHome(props: any) {
-  
   /** INITIALIZATIONS **/
   const [count, setCount] = useState(0);
   const [value, setValue] = useState(true);
@@ -57,17 +56,20 @@ export function NavbarHome(props: any) {
               </NavLink>
             </Box>
 
-            <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/orders" activeClassName="underline">
-                Buyurtma
-              </NavLink>
-            </Box>
+            {props.verifiedMemberData ? (
+              <Box className="hover-line" onClick={props.setPath}>
+                <NavLink to="/orders" activeClassName="underline">
+                  Buyurtma
+                </NavLink>
+              </Box>
+            ) : null}
 
             <Box className="hover-line" onClick={props.setPath}>
               <NavLink to="/community" activeClassName="underline">
                 Jamiyat
               </NavLink>
             </Box>
+
             {props.verifiedMemberData ? (
               <Box className="hover-line" onClick={props.setPath}>
                 <NavLink to="/member-page" activeClassName="underline">
