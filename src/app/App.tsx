@@ -178,6 +178,8 @@ function App() {
           verifiedMemberData={verifiedMemberData}
           cartItems={cartItems}
           onAdd={onAdd}
+          onRemove={onRemove}
+          onDelete={onDelete}
         />
       ) : (
         <NavbarOthers
