@@ -39,16 +39,17 @@ class OrderApiService {
   async getMyOrders(order_status: string): Promise<Order[]> {
     try {
       const url = `/orders?status=${order_status}`,
-        result = await axios.get(this.path + url, { withCredentials: true });
+        result = await axios.get(this.path + url, { withCredentials: true, });
 
-      console.log("state::", result.data.state);
-      assert.ok(result?.data, Definer.general_err1);
-      assert.ok(result?.data?.state !== "fail", result?.data?.message);
-
+        assert.ok(result?.data, Definer.general_err1);
+        assert.ok(result?.data?.state !== "fail", result?.data?.message);
+        console.log("state::", result.data.state);
+        
       const orders: Order[] = result.data.data;
+      console.log("orders:", orders);
       return orders;
     } catch (err: any) {
-      console.log(`getMYOrder, ERROR: ${err.message}`);
+      console.log(`getMyOrders, ERROR: ${err.message}`);
       throw err;
     }
   }

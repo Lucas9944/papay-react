@@ -1,70 +1,82 @@
-/* eslint-disable jsx-a11y/alt-text */
+import TabPanel from "@mui/lab/TabPanel/TabPanel";
 import { Box, Stack } from "@mui/material";
-import TabPanel from "@mui/lab/TabPanel";
+import { createSelector } from "@reduxjs/toolkit";
 import React from "react";
-// REDUX
-import { useSelector } from "react-redux";
-import { createSelector } from "reselect";
 import { retrieveFinishedOrders } from "../../../screens/OrdersPage/selector";
+import { useSelector } from "react-redux";
+import { Order } from "../../../../types/order";
+import { serverApi } from "../../../../lib/config";
+import { Product } from "../../../../types/product";
 
-/** REDUX SELECTOR */
+/**REDUC SELECTOR */
+
 const finishedOrdersRetriever = createSelector(
   retrieveFinishedOrders,
-  (finishedOrders) => ({
-    finishedOrders,
-  })
+  (finishedOrders) => ({ finishedOrders })
 );
+const FinishedOrders = () => {
 
-const pausedOrders = [
-  [1, 2, 3],
-  [1, 2, 3],
-  [1, 2, 3],
-];
+  /**INITIALIZATIONS */
 
-export default function FinishedOrders(props: any) {
-  /** INITIALIZATIONS **/
-  // const { pausedOrders } = useSelector(pausedOrdersRetriever);
+  const { finishedOrders } = useSelector(finishedOrdersRetriever);
   return (
-    <TabPanel value={"3"}>
+    <TabPanel value="3">
       <Stack>
-        {pausedOrders?.map((order) => {
+        {finishedOrders?.map((order: Order) => {
           return (
-            <Box className={"order_main_box"}>
-              <Box className={"order_box_scroll"}>
-                {order.map((item) => {
-                  const image_path = `/restaurant/qovurma.png`;
+            <Box className="order_main_box">
+              <Box className="order_box_scroll">
+                {order.order_items.map((item) => {
+                  const product: Product = order.product_data.filter(
+                    (ele) => ele._id === item.product_id
+                  )[0];
+                  const image_path = `${serverApi}/${product.product_images[0]}`;
                   return (
-                    <Box className={"ordersName_price"}>
-                      <img src={image_path} className={"orderDish"} />
-                      <p className="titleDish">Qovurma</p>
-                      <Box className={"priceBox"}>
-                        <p>$7</p>
-                        <img src="/icons/Close.svg" alt="" />
-                        <p>3</p>
-                        <img src="/icons/pause.svg" alt="" />
-                        <p style={{ marginLeft: "15px" }}> $22</p>
+                    <Box className="ordersName_price">
+                      <img
+                        style={{
+                          width: "50px",
+                          height: "47px",
+                          borderRadius: "29px",
+                        }}
+                        src={image_path}
+                        alt=""
+                        className="orderDishImg"
+                      />
+                      <p className="titleDish">{product.product_name}</p>
+                      <Box className="priceBox">
+                        <p> ${item.item_price}</p>
+                        <p style={{ marginRight: "6px", marginLeft: "6px" }}>
+                          {" "}
+                          x
+                        </p>
+                        <p> {item.item_quantity}</p>
+                        <p style={{ marginRight: "6px", marginLeft: "6px" }}>
+                          {" "}
+                          =
+                        </p>
+                        <p style={{ marginLeft: "15px" }}>
+                          ${item.item_price * item.item_quantity}
+                        </p>
                       </Box>
                     </Box>
                   );
                 })}
-                <Box className={"total_price_box red_solid"}>
-                  <Box className={"boxTotal"}>
-                    <p>mahsulot narhi</p>
-                    <p>$17</p>
-                    <img
-                      src="/icons/plus.svg"
-                      alt=""
-                      style={{ marginLeft: "20px" }}
-                    />
-                    <p>yetkazib berish</p>
-                    <p>$2</p>
-                    <img
-                      src="/icons/pause.svg"
-                      style={{ marginLeft: "20px" }}
-                    />
-                    <p>jami narx</p>
-                    <p>$24</p>
-                  </Box>
+              </Box>
+
+              <Box className="total_price_box black_solid">
+                <Box className="boxTotal finishedTotal">
+                  <p>mahsulot narxi</p>
+                  <p>${order.order_total_amount - order.order_delivery_cost}</p>
+                  <p>+</p>
+                  <p>yetkazish xizmati</p>
+                  <p>${order.order_delivery_cost}</p>
+                  <p>=</p>
+                  <p>jami narx</p>
+                  <p style={{ marginLeft: "20px" }}>
+                    ${order.order_total_amount}
+                  </p>
+                  <p className="done">Delivered</p>
                 </Box>
               </Box>
             </Box>
@@ -73,4 +85,6 @@ export default function FinishedOrders(props: any) {
       </Stack>
     </TabPanel>
   );
-}
+};
+
+export default FinishedOrders;

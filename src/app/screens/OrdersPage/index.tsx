@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect, useState } from "react";
 import { Container, Stack, Box } from "@mui/material";
@@ -12,15 +13,11 @@ import FinishedOrders from "../../components/header/orders/finishedOrders";
 
 // REDUX
 import { useDispatch } from "react-redux";
-import { Restaurant } from "../../../types/user";
+
 import { Dispatch } from "@reduxjs/toolkit";
-import {
-  setRandomRestaurants,
-  setChosenRestaurant,
-  setTargetProducts,
-} from "../../screens/RestaurantPage/slice";
 import { Order } from "../../../types/order";
 import { setFinishedOrders, setPausedOrders, setProcessOrders } from "./slice";
+import OrderApiService from "../../apiServices/orderApiService";
 
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -29,13 +26,30 @@ const actionDispatch = (dispach: Dispatch) => ({
   setFinishedOrders: (data: Order[]) => dispach(setFinishedOrders(data)),
 });
 
-export function OrdersPage() {
+export function OrdersPage(props: any) {
   /** INITIALIZATIONS **/
   const [value, setValue] = useState("1");
   const { setPausedOrders, setProcessOrders, setFinishedOrders } =
     actionDispatch(useDispatch());
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const orderService = new OrderApiService();
+
+    orderService
+      .getMyOrders("paused")
+      .then((data) => setPausedOrders(data))
+      .catch((err) => console.log(err));
+
+    orderService
+      .getMyOrders("process")
+      .then((data) => setProcessOrders(data))
+      .catch((err) => console.log(err));
+
+    orderService
+      .getMyOrders("finished")
+      .then((data) => setFinishedOrders(data))
+      .catch((err) => console.log(err));
+  }, [props.orderRebuild]);
 
   /** HANDLERS **/
   const handleChange = (event: any, newValue: string) => {
@@ -67,8 +81,8 @@ export function OrdersPage() {
               </Box>
             </Box>
             <Stack className="order_main_content">
-              <PausedOrders />
-              <ProcessOrders />
+              <PausedOrders setOrderRebuild={props.setOrderRebuild} />
+              <ProcessOrders setOrderRebuild={props.setOrderRebuild} />
               <FinishedOrders />
             </Stack>
           </TabContext>

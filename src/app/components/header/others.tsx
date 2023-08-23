@@ -1,11 +1,9 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { Logout } from "@mui/icons-material";
 import {
-  Badge,
   Box,
   Button,
   Container,
-  IconButton,
   ListItemIcon,
   Menu,
   MenuItem,
@@ -76,6 +74,7 @@ export function NavbarOthers(props: any) {
               onRemove={props.onRemove}
               onDelete={props.onDelete}
               onDeleteAll={props.onDeleteAll}
+              setOrderRebuild={props.setOrderRebuild}
             />
 
             {!props.verifiedMemberData ? (

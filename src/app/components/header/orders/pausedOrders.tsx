@@ -1,86 +1,153 @@
-/* eslint-disable jsx-a11y/alt-text */
-import { Box, Button, Stack } from "@mui/material";
-import TabPanel from "@mui/lab/TabPanel";
 import React from "react";
-
-// REDUX
-import { useSelector } from "react-redux";
-import { createSelector } from "reselect";
+import TabPanel from "@mui/lab/TabPanel";
+import { Box, Button, Stack } from "@mui/material";
+import { createSelector } from "@reduxjs/toolkit";
 import { retrievePausedOrders } from "../../../screens/OrdersPage/selector";
+import { useSelector } from "react-redux";
+import { Order } from "../../../../types/order";
+import { Product } from "../../../../types/product";
+import { serverApi } from "../../../../lib/config";
+import {
+  sweetErrorHandling,
+  sweetFailureProvider,
+} from "../../../../lib/sweetAlert";
+import OrderApiService from "../../../apiServices/orderApiService";
+import { verifyMemberData } from "../../../apiServices/verify";
 
-/** REDUX SELECTOR */
+/**REDUC SELECTOR */
+
 const pausedOrdersRetriever = createSelector(
   retrievePausedOrders,
-  (pausedOrders) => ({
-    pausedOrders,
-  })
+  (pausedOrders) => ({ pausedOrders })
 );
 
-const pausedOrders = [
-  [1, 2, 3],
-  [1, 2, 3],
-  [1, 2, 3],
-];
+const PausedOrders = (props: any) => {
+  /**INITIALIZATIONS */
+  const { pausedOrders } = useSelector(pausedOrdersRetriever);
 
-export default function PausedOrders(props: any) {
-  /** INITIALIZATIONS **/
-  // const { pausedOrders } = useSelector(pausedOrdersRetriever);
+  /**HANDLERS */
+
+  const deleteOrderHandler = async (event: any) => {
+    try {
+      const order_id = event.target.value;
+      const data = { order_id: order_id, order_status: "DELETED" };
+
+      if (!verifyMemberData) {
+        sweetFailureProvider("Please login first", true);
+      }
+
+      let confirmation = window.confirm(
+        "Buyurtmani bekor qilishni xohlaysizmi?"
+      );
+      if (confirmation) {
+        const orderService = new OrderApiService();
+        await orderService.updateOrderStatus(data);
+        props.setOrderRebuild(new Date());
+
+        //refresh
+      }
+    } catch (err) {
+      console.log("deleteOrderHandler, ERROR:", err);
+      sweetErrorHandling(err).then();
+    }
+  };
+
+  const processOrderHandler = async (event: any) => {
+    try {
+      const order_id = event.target.value;
+      const data = { order_id: order_id, order_status: "PROCESS" };
+
+      if (!verifyMemberData) {
+        sweetFailureProvider("Please login first", true);
+      }
+
+      let confirmation = window.confirm(
+        "Buyurtmangizni tolashni tasdiqlaysizmi?"
+      );
+      if (confirmation) {
+        const orderService = new OrderApiService();
+        await orderService.updateOrderStatus(data);
+        props.setOrderRebuild(new Date());
+        //refresh
+      }
+    } catch (err) {
+      console.log("processOrderHandler, ERROR:", err);
+      sweetErrorHandling(err).then();
+    }
+  };
   return (
-    <TabPanel value={"1"}>
+    <TabPanel value="1">
       <Stack>
-        {pausedOrders?.map((order) => {
+        {pausedOrders?.map((order: Order) => {
           return (
-            <Box className={"order_main_box"}>
-              <Box className={"order_box_scroll"}>
-                {order.map((item) => {
-                  const image_path = `/restaurant/qovurma.png`;
+            <Box className="order_main_box">
+              <Box className="order_box_scroll">
+                {order.order_items.map((item) => {
+                  const product: Product = order.product_data.filter(
+                    (ele) => ele._id === item.product_id
+                  )[0];
+
+                  const image_path = `${serverApi}/${product.product_images[0]}`;
                   return (
-                    <Box className={"ordersName_price"}>
-                      <img src={image_path} className={"orderDish"} />
-                      <p className="titleDish">Qovurma</p>
-                      <Box className={"priceBox"}>
-                        <p>$7</p>
-                        <img src="/icons/Close.svg" alt="" />
-                        <p>3</p>
-                        <img src="/icons/pause.svg" alt="" />
-                        <p style={{ marginLeft: "15px" }}> $22</p>
+                    <Box className="ordersName_price">
+                      <img
+                        style={{
+                          width: "50px",
+                          height: "47px",
+                          borderRadius: "29px",
+                        }}
+                        src={image_path}
+                        alt=""
+                        className="orderDishImg"
+                      />
+                      <p className="titleDish">{product.product_name}</p>
+                      <Box className="priceBox">
+                        <p> ${item.item_price}</p>
+                        <p style={{ marginRight: "6px", marginLeft: "6px" }}>
+                          {" "}
+                          x
+                        </p>
+                        <p> {item.item_quantity}</p>
+                        <p style={{ marginRight: "6px", marginLeft: "6px" }}>
+                          {" "}
+                          =
+                        </p>
+                        <p style={{ marginLeft: "15px" }}>
+                          ${item.item_price * item.item_quantity}
+                        </p>
                       </Box>
                     </Box>
                   );
                 })}
-                <Box className={"total_price_box_3 "}>
-                  <Box className={"boxTotal"}>
-                    <p>mahsulot narhi</p>
-                    <p>$17</p>
-                    <img
-                      src="/icons/plus.svg"
-                      alt=""
-                      style={{ marginLeft: "20px" }}
-                    />
-                    <p>yetkazib berish xizmati</p>
-                    <p>$2</p>
-                    <img
-                      src="/icons/pause.svg"
-                      style={{ marginLeft: "20px" }}
-                    />
-                    <p>jami narx</p>
-                    <p>$24</p>
+              </Box>
 
+              <Box className="total_price_box black_solid">
+                <Box className="boxTotal">
+                  <p>mahsulot narxi</p>
+                  <p>${order.order_total_amount - order.order_delivery_cost}</p>
+                  <p>+</p>
+                  <p>yetkazish xizmati</p>
+                  <p>${order.order_delivery_cost}</p>
+                  <p>=</p>
+                  <p>jami narx</p>
+                  <p style={{ marginLeft: "20px" }}>
+                    ${order.order_total_amount}
+                  </p>
+                  <Box className="btn_actions">
                     <Button
-                      className={"button_red"}
-                      sx={{
-                        background: "rgba(209, 2, 2, 1)",
-                        color: "white",
-                      }}
+                      value={order._id}
+                      onClick={deleteOrderHandler}
+                      className="btn_cancel"
+                      color="error"
+                      variant="contained"
                     >
-                      Bekor qilish
+                      Bekor Qilish
                     </Button>
                     <Button
-                      className={"button_blue"}
-                      sx={{
-                        background: "rgba(2, 136, 209, 1)",
-                        color: "white",
-                      }}
+                      value={order._id}
+                      onClick={processOrderHandler}
+                      className="btn_cancel"
+                      variant="contained"
                     >
                       To'lash
                     </Button>
@@ -93,4 +160,6 @@ export default function PausedOrders(props: any) {
       </Stack>
     </TabPanel>
   );
-}
+};
+
+export default PausedOrders;
