@@ -13,7 +13,7 @@ import {
   sweetFailureProvider,
 } from "../../../../lib/sweetAlert";
 import OrderApiService from "../../../apiServices/orderApiService";
-import { verifyMemberData } from "../../../apiServices/verify";
+import { verifiedMemberData } from "../../../apiServices/verify";
 
 /**REDUC SELECTOR */
 
@@ -31,7 +31,7 @@ const ProcessOrders = (props: any) => {
       const order_id = event.target.value;
       const data = { order_id: order_id, order_status: "FINISHED" };
 
-      if (!verifyMemberData) {
+      if (!verifiedMemberData) {
         sweetFailureProvider("Please login first", true);
       }
 

@@ -13,4 +13,4 @@ if (cookies.get("access_token")) {
 }
 
 console.log("=== verify ===", member_data);
-export const verifyMemberData = member_data ? member_data : null;
+export const verifiedMemberData = member_data ? member_data : null;

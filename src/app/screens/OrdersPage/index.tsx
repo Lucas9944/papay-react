@@ -13,11 +13,11 @@ import FinishedOrders from "../../components/header/orders/finishedOrders";
 
 // REDUX
 import { useDispatch } from "react-redux";
-
 import { Dispatch } from "@reduxjs/toolkit";
 import { Order } from "../../../types/order";
 import { setFinishedOrders, setPausedOrders, setProcessOrders } from "./slice";
 import OrderApiService from "../../apiServices/orderApiService";
+import { Member } from "../../../types/user";
 
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -31,6 +31,7 @@ export function OrdersPage(props: any) {
   const [value, setValue] = useState("1");
   const { setPausedOrders, setProcessOrders, setFinishedOrders } =
     actionDispatch(useDispatch());
+  const verifiedMemberData: Member | null = props.verifiedMemberData;
 
   useEffect(() => {
     const orderService = new OrderApiService();
@@ -106,18 +107,24 @@ export function OrdersPage(props: any) {
                 />
                 <div className="order_user_icon_box">
                   <img
-                    src="/icons/user_icon.svg"
+                    src={verifiedMemberData?.mb_image}
                     alt=""
                     className="user_icon"
                   />
                 </div>
               </div>
-              <span className={"order_user_name"}>lucas</span>
-              <span className={"order_user_prof"}>USER</span>
+              <span className={"order_user_name"}>
+                {verifiedMemberData?.mb_nick}
+              </span>
+              <span className={"order_user_prof"}>
+                {verifiedMemberData?.mb_type ?? "Foydalanuvchi"}
+              </span>
               <div className="border"></div>
               <div className={"order_user_address"}>
                 <LocationOnIcon />
-                <span className="spec_address_txt">manzil kiritilmagan</span>
+                <span className="spec_address_txt">
+                  {verifiedMemberData?.mb_address ?? "manzill kiritilmagan"}
+                </span>
               </div>
             </Box>
           </Stack>
