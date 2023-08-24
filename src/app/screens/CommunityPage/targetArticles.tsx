@@ -9,8 +9,34 @@ import { serverApi } from "../../../lib/config";
 import { Favorite, RemoveRedEye } from "@mui/icons-material";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import moment from "moment";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
+import { Definer } from "../../../lib/Definer";
+import assert from "assert";
+import MemberApiService from "../../apiServices/memberApiService";
 
 export function TargetArticles(props: any) {
+  /** HANDLERS **/
+  const { setArticlesRebuild } = props;
+  const targetLikeHandler = async (e: any) => {
+    try {
+      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+
+      const memberService = new MemberApiService();
+      const like_result = await memberService.memberLikeTarget({
+        like_ref_id: e.target.id,
+        group_type: "community",
+      });
+      assert.ok(like_result, Definer.general_err1);
+      await sweetTopSmallSuccessAlert("success", 700, false);
+      setArticlesRebuild(new Date());
+    } catch (err: any) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
+  };
   return (
     <Stack>
       {props.targetBoArticles?.map((article: BoArticle) => {
@@ -67,19 +93,18 @@ export function TargetArticles(props: any) {
                   marginRight: "20px",
                 }}
               >
-                <div className="article_time">
-                  <span>{moment().format("YY-MM-DD HH:mm")}</span>
-                </div>
+                <span>{moment().format("YY-MM-DD HH:mm")}</span>
+
                 <Checkbox
                   icon={<FavoriteBorder />}
-                  // onClick={targetLikeHandler}
                   checkedIcon={<Favorite style={{ color: "red" }} />}
+                  id={article?._id}
+                  onClick={targetLikeHandler}
                   checked={
                     article?.me_liked && article?.me_liked[0]?.my_favorite
                       ? true
                       : false
                   }
-                  id={article?._id}
                 />
                 <span>{article?.art_likes}</span>
               </div>
