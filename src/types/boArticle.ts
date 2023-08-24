@@ -16,3 +16,23 @@ export interface BoArticle {
   member_data: Member;
   me_liked: MeLiked[];
 }
+
+export interface SearchArticlesObj {
+  page: number;
+  limit: number;
+  order?: string | null;
+  bo_id: string;
+}
+
+export interface SearchMemberArticlesObj {
+  page: number;
+  limit: number;
+  mb_id: string;
+}
+
+export interface BoArticleInput {
+  art_subject: string;
+  art_content: string;
+  art_image: string;
+  bo_id: string;
+}
