@@ -15,14 +15,72 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
+import { Member } from "../../../types/user";
+import { BoArticle } from "../../../types/boArticle";
 // OTHERS
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
+// REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { Dispatch } from "@reduxjs/toolkit";
+import {
+  setChosenMember,
+  setChosenMemberBoArticles,
+  setChosenSingleBoArticle,
+} from "./slice";
+import {
+  retrieveChosenMember,
+  retrieveChosenMemberBoArticles,
+  retrieveChosenSingleBoArticle,
+} from "./selector";
+
+/** REDUX SLICE */
+const actionDispatch = (dispach: Dispatch) => ({
+  setChosenMember: (data: Member) => dispach(setChosenMember(data)),
+  setChosenMemberBoArticles: (data: BoArticle[]) =>
+    dispach(setChosenMemberBoArticles(data)),
+  setChosenSingleBoArticle: (data: BoArticle) =>
+    dispach(setChosenSingleBoArticle(data)),
+});
+
+/** REDUX SELECTOR */
+const chosenMemberRetriever = createSelector(
+  retrieveChosenMember,
+  (chosenMember) => ({
+    chosenMember,
+  })
+);
+
+const chosenMemberBoArticlesRetriever = createSelector(
+  retrieveChosenMemberBoArticles,
+  (chosenMemberBoArticles) => ({
+    chosenMemberBoArticles,
+  })
+);
+
+const chosenSingleBoArticleRetriever = createSelector(
+  retrieveChosenSingleBoArticle,
+  (chosenSingleBoArticle) => ({
+    chosenSingleBoArticle,
+  })
+);
+
 export function VisitOtherPage(props: any) {
   /** INITIALIZATIONS **/
+  const {
+    setChosenMember,
+    setChosenMemberBoArticles,
+    setChosenSingleBoArticle,
+  } = actionDispatch(useDispatch());
+  const { chosenMember } = useSelector(chosenMemberRetriever);
+  const { chosenMemberBoArticles } = useSelector(
+    chosenMemberBoArticlesRetriever
+  );
+  const { chosenSingleBoArticle } = useSelector(chosenSingleBoArticleRetriever);
   const [value, setValue] = React.useState("1");
 
   /** HANDLERS **/
@@ -143,47 +201,47 @@ export function VisitOtherPage(props: any) {
                   onChange={handleChange}
                   aria-label="lab API tabs example"
                 >
-                    <Tab
-                      style={{ flexDirection: "column" }}
-                      value={"1"}
-                      component={(e) => (
-                        <div
-                          className={`menu_box ${e}`}
-                          onClick={() => setValue("1")}
-                        >
-                          <img src={"/icons/post.svg"} />
-                          <span>Maqolalari</span>
-                        </div>
-                      )}
-                    />
+                  <Tab
+                    style={{ flexDirection: "column" }}
+                    value={"1"}
+                    component={(e) => (
+                      <div
+                        className={`menu_box ${e}`}
+                        onClick={() => setValue("1")}
+                      >
+                        <img src={"/icons/post.svg"} />
+                        <span>Maqolalari</span>
+                      </div>
+                    )}
+                  />
 
-                    <Tab
-                      style={{ flexDirection: "column" }}
-                      value={"2"}
-                      component={() => (
-                        <div
-                          className={`menu_box ${value}`}
-                          onClick={() => setValue("2")}
-                        >
-                          <img src={"/icons/following.svg"} />
-                          <span>Followers</span>
-                        </div>
-                      )}
-                    />
+                  <Tab
+                    style={{ flexDirection: "column" }}
+                    value={"2"}
+                    component={() => (
+                      <div
+                        className={`menu_box ${value}`}
+                        onClick={() => setValue("2")}
+                      >
+                        <img src={"/icons/following.svg"} />
+                        <span>Followers</span>
+                      </div>
+                    )}
+                  />
 
-                    <Tab
-                      style={{ flexDirection: "column" }}
-                      value={"1"}
-                      component={() => (
-                        <div
-                          className={`menu_box ${value}`}
-                          onClick={() => setValue("3")}
-                        >
-                          <img src={"/icons/followers.svg"} />
-                          <span>Following</span>
-                        </div>
-                      )}
-                    />
+                  <Tab
+                    style={{ flexDirection: "column" }}
+                    value={"1"}
+                    component={() => (
+                      <div
+                        className={`menu_box ${value}`}
+                        onClick={() => setValue("3")}
+                      >
+                        <img src={"/icons/followers.svg"} />
+                        <span>Following</span>
+                      </div>
+                    )}
+                  />
                 </TabList>
               </Box>
             </Stack>
