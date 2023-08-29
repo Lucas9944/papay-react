@@ -42,6 +42,7 @@ const ProcessOrders = (props: any) => {
         const orderService = new OrderApiService();
         await orderService.updateOrderStatus(data);
         props.setOrderRebuild(new Date());
+        props.setValue("3");
         //refresh
       }
     } catch (err) {

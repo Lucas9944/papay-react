@@ -84,7 +84,7 @@ export function OrdersPage(props: any) {
             <Stack className="order_main_content">
               <PausedOrders setOrderRebuild={props.setOrderRebuild} />
               <ProcessOrders setOrderRebuild={props.setOrderRebuild} />
-              <FinishedOrders />
+              <FinishedOrders setOrderRebuild={props.setOrderRebuild} />
             </Stack>
           </TabContext>
         </Stack>

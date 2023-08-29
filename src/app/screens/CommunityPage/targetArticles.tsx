@@ -93,18 +93,19 @@ export function TargetArticles(props: any) {
                   marginRight: "20px",
                 }}
               >
-                <span>{moment().format("YY-MM-DD HH:mm")}</span>
-
+                <div className="article_time">
+                  {moment(article?.createdAt).format("YY-MM-DD HH:mm")}
+                </div>
                 <Checkbox
                   icon={<FavoriteBorder />}
-                  checkedIcon={<Favorite style={{ color: "red" }} />}
-                  id={article?._id}
                   onClick={targetLikeHandler}
+                  checkedIcon={<Favorite style={{ color: "red" }} />}
                   checked={
                     article?.me_liked && article?.me_liked[0]?.my_favorite
                       ? true
                       : false
                   }
+                  id={article?._id}
                 />
                 <span>{article?.art_likes}</span>
               </div>

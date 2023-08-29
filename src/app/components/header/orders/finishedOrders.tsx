@@ -14,7 +14,7 @@ const finishedOrdersRetriever = createSelector(
   retrieveFinishedOrders,
   (finishedOrders) => ({ finishedOrders })
 );
-const FinishedOrders = () => {
+const FinishedOrders = (props: any) => {
 
   /**INITIALIZATIONS */
 

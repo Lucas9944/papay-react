@@ -44,7 +44,7 @@ function App() {
   console.log("main_path", main_path);
   const [signUpOpen, setSignUpOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
-  const [orderRebuild, setOrderRebuild] = React.useState<Date>(new Date());
+  const [orderRebuild, setOrderRebuild] = useState<Date>(new Date());
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);

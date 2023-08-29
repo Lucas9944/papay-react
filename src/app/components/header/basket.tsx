@@ -20,7 +20,8 @@ export default function Basket(props: any) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = props;
+  const { cartItems, onAdd, onRemove, onDelete, onDeleteAll, setOrderRebuild } =
+    props;
   const itemsPrice = cartItems?.reduce(
     (a: any, c: CartItem) => a + c.price * c.quantity,
     0
@@ -44,8 +45,8 @@ export default function Basket(props: any) {
 
       onDeleteAll();
       handleClose();
-
       props.setOrderRebuild(new Date());
+
       history.push("/orders");
     } catch (err: any) {
       console.log(err);
